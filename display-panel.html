@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Display Panel</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<div class="display-panel">
+			<header>
+			</header>
+			<section class="timer">
+				<h1 class="minutes"></h1>
+				<h1>:</h1>
+				<h1 class="seconds"></h1>
+			</section>
+			<footer></footer>
+		</div>
+		<script>
+			var minutes = document.querySelector('.minutes');
+			var seconds = document.querySelector('.seconds');
+
+			var convertTimer = function (time) {
+				var minutes = Math.floor(time / 1000 / 60);
+				var seconds = Math.floor((time / 1000) - (minutes * 60));
+				if (seconds < 10) {
+					seconds = '0' + seconds;
+				} else if (seconds === 60) {
+					seconds = '00';
+				}
+				return {
+					minutes: '0' + minutes,
+					seconds: seconds
+				};
+			};
+
+			var competitionTimer = null;
+			var competitionTime = 5 * 60 * 1000; //5min
+			var startClock = function () {
+				competitionTimer = setInterval(function () {
+					competitionTime = competitionTime - 100;
+					if (competitionTime === 0) {
+						clearInterval(competitionTimer);
+					}
+					var time = convertTimer(competitionTime);
+					minutes.innerHTML = time.minutes;
+					seconds.innerHTML = time.seconds;
+				}, 100);
+			};
+
+			var pauseClock = function () {
+				clearInterval(competitionTimer);
+			};
+
+			var clearClock = function () {
+				pauseClock();
+				competitionTime = 5 * 60 * 1000; //5min
+				var time = convertTimer(competitionTime);
+				minutes.innerHTML = time.minutes;
+				seconds.innerHTML = time.seconds;
+			};
+
+			require('ipc').on('timer', function(value) {
+				// timer.innerHTML = value.timer;
+				if (value.start) {
+					startClock();
+				} else if (value.pause) {
+					pauseClock();
+				} else if (value.clear) {
+					clearClock();
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "judo-score-board",
+  "productName": "JudoScoreBoard",
+  "version": "0.0.0",
+  "description": "My stellar app",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "MathiasTim/judo-score-board",
+  "author": {
+    "name": "Mathias Maier",
+    "email": "m.maier@mwaysolutions.com",
+    "url": "mathiasmaier.de"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . $npm_package_productName --prune --asar --all --version=0.29.1"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app"
+  ],
+  "dependencies": {
+    "electron-debug": "^0.1.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.0.0",
+    "electron-prebuilt": "^0.29.1"
+  }
+}
