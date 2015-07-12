@@ -29,7 +29,6 @@
 			var ipc = require('ipc');
 
 			var send = function (event) {
-				console.log(event);
 				ipc.send('asynchronous-message', {text: text.value, number: number.value});
 			};
 			// text.addEventListener('keyup', send);
