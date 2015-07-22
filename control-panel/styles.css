@@ -1,0 +1,22 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'San Francisco Text', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.timer {
+  text-align: right;
+}
+
+.timer h1 {
+  /*font-family: 'digital-7';*/
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 200;
+  margin: 6px 0;
+}
+
+.timer.finished {
+  color: red;
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Display Panel</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body ng-app="displayPanel">
+    <div ng-include="'display-panel.html'"></div>
+
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-aria/angular-aria.js"></script>
+    <script src="../bower_components/angular-material/angular-material.js"></script>
+    <script src="../shared/shared.js"></script>
+    <script src="../shared/timer-dir.js"></script>
+    <script src="../shared/settings-serv.js"></script>
+
+    <script>
+      angular.module('displayPanel', ['ngMaterial', 'shared'])
+      .run(function () {
+        console.log('runnin as well');
+      });
+    </script>
+    <script src="./display-panel-ctrl.js"></script>
+  </body>
+</html>

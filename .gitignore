@@ -1,1 +1,8 @@
-node_modules
+# temp files
+.DS_Store
+.tmp
+.sass-cache
+
+# npm & bower
+/node_modules/
+/bower_components/

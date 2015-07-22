@@ -1,0 +1,38 @@
+<div class="control-panel" ng-controller="ControlPanelCtrl as panel">
+  <md-content>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <h2>
+          <span>Control Panel</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Settings"
+          ng-click="panel.showSettings($event)">
+          <md-icon>settings</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-card>
+      <md-card-content>
+        <h3 class="md-headline">Timekeeping</h3>
+        <div layout="row" layout-margin>
+          <div flex flex-order="1">
+            <md-button class="md-raised md-primary"
+              ng-class="{'md-accent': panel.options.timerIsRunning}"
+              ng-click="panel.toggleTimer()">
+                {{panel.options.timerIsRunning ? 'Pause' : 'Start'}}
+              </md-button>
+            <md-button class="md-raised md-warn"
+              ng-click="panel.resetTimer()">Reset</md-button>
+          </div>
+          <div flex flex-order="2">
+            <count-down-timer></count-down-timer>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </md-content>
+</div>

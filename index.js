@@ -11,6 +11,16 @@ require('crash-reporter').start();
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
+// prevent window being GC'd
+let controlPanel;
+let displayPanel;
+
+function onClosed () {
+  // deref the window
+  // for multiple windows store them in an array
+  controlPanel = null;
+}
+
 function createMainWindow (path, width, height, offsetX) {
   const win = new BrowserWindow({
     x: offsetX || 0,
@@ -23,16 +33,6 @@ function createMainWindow (path, width, height, offsetX) {
   win.on('closed', onClosed);
 
   return win;
-}
-
-// prevent window being GC'd
-let controlPanel;
-let displayPanel;
-
-function onClosed() {
-  // deref the window
-  // for multiple windows store them in an array
-  controlPanel = null;
 }
 
 app.on('window-all-closed', function () {
@@ -48,7 +48,7 @@ app.on('activate-with-no-open-windows', function () {
 });
 
 app.on('ready', function () {
-  controlPanel = createMainWindow('control-panel.html', 600, 400, 0);
-  displayPanel = createMainWindow('display-panel.html', 600, 400, 5000);
-	Communicator.startListener(controlPanel, displayPanel);
+  displayPanel = createMainWindow('display-panel/index.html', 600, 400, 5000);
+  controlPanel = createMainWindow('control-panel/index.html', 600, 400, 0);
+  Communicator.startListener(controlPanel, displayPanel);
 });
