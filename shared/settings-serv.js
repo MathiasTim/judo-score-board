@@ -3,6 +3,7 @@ angular.module('shared')
 .service('Settings', function () {
   this.settings = {
     timerIsRunning: false,
+    osaekomiTimerIsRunning: false,
     duration: 2000,
     list: [
       {

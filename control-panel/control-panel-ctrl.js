@@ -5,23 +5,46 @@ angular.module('controlPanel')
 
   this.options = Settings.settings;
 
-  this.toggleTimer = function () {
-    this.options.timerIsRunning = !this.options.timerIsRunning;
-    this.options.timerIsRunning ? this.startTimer() : this.pauseTimer();
+  this.toggleTimer = function (type) {
+    type = type || 'default';
+    if (type === 'default') {
+      this.options.timerIsRunning = !this.options.timerIsRunning;
+      this.options.timerIsRunning ? this.startTimer() : this.pauseTimer();
+    } else {
+      this.options.osaekomiTimerIsRunning = !this.options.osaekomiTimerIsRunning;
+      this.options.osaekomiTimerIsRunning ? this.startTimer(type) : this.pauseTimer(type);
+    }
   };
 
-  this.startTimer = function () {
-    ipc.send('timer', {start: true});
+  this.startTimer = function (type) {
+    type = type || 'default';
+    if (type === 'default') {
+      ipc.send('timer', {start: true});
+    } else {
+      ipc.send('timer', {startOsaekomi: true});
+    }
   };
 
-  this.pauseTimer = function () {
-    ipc.send('timer', {pause: true});
-    this.options.timerIsRunning = false;
+  this.pauseTimer = function (type) {
+    type = type || 'default';
+    if (type === 'default') {
+      ipc.send('timer', {pause: true});
+      this.options.timerIsRunning = false;
+    } else {
+      ipc.send('timer', {pauseOsaekomi: true});
+      this.options.osaekomiTimerIsRunning = false;
+    }
   };
 
-  this.resetTimer = function () {
-    ipc.send('timer', {clear: true});
-    this.options.timerIsRunning = false;
+  this.resetTimer = function (type) {
+    type = type || 'default';
+    if (type === 'default') {
+      ipc.send('timer', {clear: true});
+      this.options.timerIsRunning = false;
+    } else {
+      ipc.send('timer', {clearOsaekomi: true});
+      this.options.osaekomiTimerIsRunning = false;
+    }
   };
 
   this.showSettings = function (ev) {

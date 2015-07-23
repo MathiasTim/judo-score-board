@@ -1,46 +1,42 @@
 'use strict';
 angular.module('shared')
-.directive('countDownTimer', function ($interval, $rootScope, Settings) {
+.directive('osaekomiTimer', function ($interval, $rootScope) {
   return {
-    templateUrl: '../shared/timer.html',
+    templateUrl: '../shared/osaekomi-timer.html',
     restrict: 'E',
+    scope: {},
     link: function (scope) {
 
       scope.settings = {
-        competitionTimer:  Settings.settings.duration,
         isFinished: false
       };
 
       scope.timer = {
-        minutes: 0,
         seconds: 0
       };
 
       var convertTimer = function (time) {
-        if (!time) {
+        if (!time && time !== 0) {
           return false;
         }
-        var minutes = Math.floor(time / 1000 / 60);
-        var seconds = Math.floor((time / 1000) - (minutes * 60));
+        var seconds = Math.floor(time / 1000);
         if (seconds < 10) {
           seconds = '0' + seconds;
-        } else if (seconds === 60) {
+        } else if (seconds === 0) {
           seconds = '00';
         }
         return {
-          minutes: '0' + minutes,
           seconds: seconds
         };
       };
 
-      var competitionTimer = null;
-      var competitionTime = 5 * 60 * 1000; //5min
+      var osaekomiTimer = null;
+      var competitionTime = 0;
       scope.startClock = function () {
-        competitionTimer = $interval(function () {
-          competitionTime = competitionTime - 100;
-          if (competitionTime === 0) {
-            $interval.cancel(competitionTimer);
-            Settings.settings.timerIsRunning = false;
+        osaekomiTimer = $interval(function () {
+          competitionTime = competitionTime + 100;
+          if (competitionTime >= 25000) {
+            $interval.cancel(osaekomiTimer);
             scope.settings.isFinished = true;
           } else {
             scope.timer = convertTimer(competitionTime);
@@ -49,27 +45,24 @@ angular.module('shared')
       };
 
       scope.pauseClock = function () {
-        $interval.cancel(competitionTimer);
+        $interval.cancel(osaekomiTimer);
       };
 
       scope.clearClock = function () {
         scope.pauseClock();
-        competitionTime = scope.settings.competitionTimer;
-        scope.timer = convertTimer(competitionTime);
+        scope.timer = convertTimer(0);
+        competitionTime = 0;
         scope.settings.isFinished = false;
       };
 
       var ipc = require('ipc');
 
       ipc.on('timer', function (value) {
-        if (value.start) {
+        if (value.startOsaekomi) {
           scope.startClock();
-        } else if (value.pause) {
+        } else if (value.pauseOsaekomi) {
           scope.pauseClock();
-        } else if (value.clear) {
-          if (value.defaultDuration) {
-            scope.settings.competitionTimer = value.defaultDuration;
-          }
+        } else if (value.clearOsaekomi) {
           scope.clearClock(value);
           if (!scope.$$phase) {
             $rootScope.$apply();

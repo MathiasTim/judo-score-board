@@ -18,6 +18,7 @@
     <md-card>
       <md-card-content>
         <h3 class="md-headline">Timekeeping</h3>
+        <h5>Competition-Time</h5>
         <div layout="row" layout-margin>
           <div flex flex-order="1">
             <md-button class="md-raised md-primary"
@@ -30,6 +31,21 @@
           </div>
           <div flex flex-order="2">
             <count-down-timer></count-down-timer>
+          </div>
+        </div>
+        <h5>Osae-komi-Time</h5>
+        <div layout="row" layout-margin>
+          <div flex flex-order="1">
+            <md-button class="md-raised md-primary"
+              ng-class="{'md-accent': panel.options.osaekomiTimerIsRunning}"
+              ng-click="panel.toggleTimer('osaekomi')">
+                {{panel.options.osaekomiTimerIsRunning ? 'Pause' : 'Start'}}
+              </md-button>
+            <md-button class="md-raised md-warn"
+              ng-click="panel.resetTimer('osaekomi')">Reset</md-button>
+          </div>
+          <div flex flex-order="2">
+            <osaekomi-timer></osaekomi-timer>
           </div>
         </div>
       </md-card-content>
