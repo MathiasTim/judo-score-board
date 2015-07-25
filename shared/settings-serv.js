@@ -4,7 +4,7 @@ angular.module('shared')
   this.settings = {
     timerIsRunning: false,
     osaekomiTimerIsRunning: false,
-    duration: 2000,
+    duration: 180000,
     list: [
       {
         label: 'test',

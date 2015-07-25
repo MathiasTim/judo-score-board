@@ -5,6 +5,15 @@ angular.module('controlPanel')
 
   this.options = Settings.settings;
 
+  this.players = {
+    blue: '',
+    white: ''
+  };
+
+  this.sendPlayers = function () {
+    ipc.send('players', this.players);
+  };
+
   this.toggleTimer = function (type) {
     type = type || 'default';
     if (type === 'default') {

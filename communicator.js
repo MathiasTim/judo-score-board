@@ -35,6 +35,10 @@ module.exports = {
       //   that.clearTimer();
       // }
     });
+
+    ipc.on('players', function (event, arg) {
+      displayPanel.webContents.send('players', arg);
+    });
   },
   // timer: null,
   // time: undefined,

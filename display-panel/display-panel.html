@@ -1,7 +1,16 @@
 <div class="display-panel"
   ng-controller="DisplayPanelCtrl as panel">
-  <header></header>
-  <count-down-timer></count-down-timer>
-  <osaekomi-timer></osaekomi-timer>
-  <footer></footer>
+  <div class="container">
+    <section class="left container-item">
+      <h2 class="player-name">{{panel.players.blue}}</h2>
+    </section>
+    <section class="right container-item">
+      <h2 class="player-name">{{panel.players.white}}</h2>
+    </section>
+  </div>
+  <div class="timer-container">
+    <count-down-timer></count-down-timer>
+    <h2 class="osaekomi-label">Osaekomi Time</h2>
+    <osaekomi-timer></osaekomi-timer>
+  </div>
 </div>

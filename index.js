@@ -26,7 +26,8 @@ function createMainWindow (path, width, height, offsetX) {
     x: offsetX || 0,
     width: width || 600,
     height: height || 400,
-    resizable: true
+    resizable: true,
+    // 'zoom-factor': 2.0
   });
 
   win.loadUrl(`file://${__dirname}/${path}`);
@@ -50,5 +51,6 @@ app.on('activate-with-no-open-windows', function () {
 app.on('ready', function () {
   displayPanel = createMainWindow('display-panel/index.html', 600, 400, 5000);
   controlPanel = createMainWindow('control-panel/index.html', 600, 400, 0);
+
   Communicator.startListener(controlPanel, displayPanel);
 });

@@ -15,40 +15,63 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-card>
-      <md-card-content>
-        <h3 class="md-headline">Timekeeping</h3>
-        <h5>Competition-Time</h5>
-        <div layout="row" layout-margin>
-          <div flex flex-order="1">
-            <md-button class="md-raised md-primary"
-              ng-class="{'md-accent': panel.options.timerIsRunning}"
-              ng-click="panel.toggleTimer()">
-                {{panel.options.timerIsRunning ? 'Pause' : 'Start'}}
-              </md-button>
-            <md-button class="md-raised md-warn"
-              ng-click="panel.resetTimer()">Reset</md-button>
+    <div layout="column" layout-gt-lg="row" layout-margin>
+      <md-card flex>
+        <md-card-content>
+          <h3 class="md-headline">Player Names</h3>
+          <div layout="row" layout-margin>
+            <div flex flex-order="1">
+              <md-input-container flex>
+                <label>Player (Blue)</label>
+                <input ng-model="panel.players.blue">
+              </md-input-container>
+            </div>
+            <div flex flex-order="2">
+              <md-input-container flex>
+                <label>Player (White)</label>
+                <input ng-model="panel.players.white">
+              </md-input-container>
+            </div>
           </div>
-          <div flex flex-order="2">
-            <count-down-timer></count-down-timer>
+          <md-button class="md-raised md-primary"
+            ng-click="panel.sendPlayers()">Display</md-button>
+        </md-card-content>
+      </md-card>
+      <md-card flex>
+        <md-card-content>
+          <h3 class="md-headline">Timekeeping</h3>
+          <h5>Competition-Time</h5>
+          <div layout="row" layout-margin>
+            <div flex flex-order="1">
+              <md-button class="md-raised md-primary"
+                ng-class="{'md-accent': panel.options.timerIsRunning}"
+                ng-click="panel.toggleTimer()">
+                  {{panel.options.timerIsRunning ? 'Pause' : 'Start'}}
+                </md-button>
+              <md-button class="md-raised md-warn"
+                ng-click="panel.resetTimer()">Reset</md-button>
+            </div>
+            <div flex flex-order="2">
+              <count-down-timer></count-down-timer>
+            </div>
           </div>
-        </div>
-        <h5>Osae-komi-Time</h5>
-        <div layout="row" layout-margin>
-          <div flex flex-order="1">
-            <md-button class="md-raised md-primary"
-              ng-class="{'md-accent': panel.options.osaekomiTimerIsRunning}"
-              ng-click="panel.toggleTimer('osaekomi')">
-                {{panel.options.osaekomiTimerIsRunning ? 'Pause' : 'Start'}}
-              </md-button>
-            <md-button class="md-raised md-warn"
-              ng-click="panel.resetTimer('osaekomi')">Reset</md-button>
+          <h5>Osae-komi-Time</h5>
+          <div layout="row" layout-margin>
+            <div flex flex-order="1">
+              <md-button class="md-raised md-primary"
+                ng-class="{'md-accent': panel.options.osaekomiTimerIsRunning}"
+                ng-click="panel.toggleTimer('osaekomi')">
+                  {{panel.options.osaekomiTimerIsRunning ? 'Pause' : 'Start'}}
+                </md-button>
+              <md-button class="md-raised md-warn"
+                ng-click="panel.resetTimer('osaekomi')">Reset</md-button>
+            </div>
+            <div flex flex-order="2">
+              <osaekomi-timer></osaekomi-timer>
+            </div>
           </div>
-          <div flex flex-order="2">
-            <osaekomi-timer></osaekomi-timer>
-          </div>
-        </div>
-      </md-card-content>
-    </md-card>
+        </md-card-content>
+      </md-card>
+    </div>
   </md-content>
 </div>

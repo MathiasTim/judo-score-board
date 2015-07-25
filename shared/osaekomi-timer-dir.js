@@ -19,7 +19,7 @@ angular.module('shared')
         if (!time && time !== 0) {
           return false;
         }
-        var seconds = Math.floor(time / 1000);
+        var seconds = (time / 1000).toFixed(1);
         if (seconds < 10) {
           seconds = '0' + seconds;
         } else if (seconds === 0) {
@@ -35,7 +35,7 @@ angular.module('shared')
       scope.startClock = function () {
         osaekomiTimer = $interval(function () {
           competitionTime = competitionTime + 100;
-          if (competitionTime >= 25000) {
+          if (competitionTime >= 25100) {
             $interval.cancel(osaekomiTimer);
             scope.settings.isFinished = true;
           } else {
