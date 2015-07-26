@@ -18,23 +18,85 @@
     <div layout="column" layout-gt-lg="row" layout-margin>
       <md-card flex>
         <md-card-content>
-          <h3 class="md-headline">Player Names</h3>
+          <div layout="row">
+            <md-input-container flex>
+              <label>Info</label>
+              <textarea ng-model="panel.players.info" columns="1" md-maxlength="150"></textarea>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <h3 class="md-headline" flex>Player Names</h3>
+            <div flex></div>
+            <md-button flex class="md-raised md-warn"
+              ng-click="panel.resetPlayers()">Reset Players</md-button>
+          </div>
           <div layout="row" layout-margin>
             <div flex flex-order="1">
               <md-input-container flex>
-                <label>Player (Blue)</label>
-                <input ng-model="panel.players.blue">
+                <label>Player (White)</label>
+                <input ng-model="panel.players.white.name">
               </md-input-container>
             </div>
             <div flex flex-order="2">
               <md-input-container flex>
-                <label>Player (White)</label>
-                <input ng-model="panel.players.white">
+                <label>Player (Blue)</label>
+                <input ng-model="panel.players.blue.name">
               </md-input-container>
             </div>
           </div>
-          <md-button class="md-raised md-primary"
-            ng-click="panel.sendPlayers()">Display</md-button>
+          <h3 class="md-headline">Score</h3>
+          <div layout="row" layout-margin>
+            <div flex flex-order="1">
+              <h4>{{panel.players.white.name || 'Player (White)'}}</h4>
+              <md-input-container flex>
+                <label>Yuko</label>
+                <input type="number" ng-model="panel.players.white.score.yuko" min="0">
+              </md-input-container>
+              <md-input-container flex>
+                <label>Waza-Ari</label>
+                <input type="number" ng-model="panel.players.white.score.wazaAri" max="2" min="0">
+              </md-input-container>
+              <md-input-container flex>
+                <md-button class="md-raised md-primary"
+                  ng-disabled="panel.players.blue.score.ippon"
+                  ng-click="panel.players.white.score.ippon = !panel.players.white.score.ippon">Ippon</md-button>
+                <input type="checkbox" style="display:none" ng-model="panel.players.white.score.ippon">
+              </md-input-container>
+              <md-input-container flex>
+                <label>Shido</label>
+                <input type="number" ng-model="panel.players.white.penalty.shido" min="0" max="3">
+              </md-input-container>
+              <md-input-container flex ng-if="panel.options.showMedication">
+                <label>Medication</label>
+                <input type="number" ng-model="panel.players.white.penalty.medication" min="0" max="2">
+              </md-input-container>
+            </div>
+            <div flex flex-order="2">
+              <h4>{{panel.players.blue.name || 'Player (Blue)'}}</h4>
+              <md-input-container flex>
+                <label>Yuko</label>
+                <input type="number" ng-model="panel.players.blue.score.yuko" min="0">
+              </md-input-container>
+              <md-input-container flex>
+                <label>Waza-Ari</label>
+                <input type="number" ng-model="panel.players.blue.score.wazaAri" max="2" min="0">
+              </md-input-container>
+              <md-input-container flex>
+                <md-button class="md-raised md-primary"
+                  ng-disabled="panel.players.white.score.ippon"
+                  ng-click="panel.players.blue.score.ippon = !panel.players.blue.score.ippon">Ippon</md-button>
+                <input type="checkbox" style="display:none" ng-model="panel.players.blue.score.ippon">
+              </md-input-container>
+              <md-input-container flex>
+                <label>Shido</label>
+                <input type="number" ng-model="panel.players.blue.penalty.shido" min="0" max="3">
+              </md-input-container>
+              <md-input-container flex ng-if="panel.options.showMedication">
+                <label>Medication</label>
+                <input type="number" ng-model="panel.players.blue.penalty.medication" min="0" max="2">
+              </md-input-container>
+            </div>
+          </div>
         </md-card-content>
       </md-card>
       <md-card flex>

@@ -1,16 +1,91 @@
 <div class="display-panel"
   ng-controller="DisplayPanelCtrl as panel">
-  <div class="container">
-    <section class="left container-item">
-      <h2 class="player-name">{{panel.players.blue}}</h2>
-    </section>
-    <section class="right container-item">
-      <h2 class="player-name">{{panel.players.white}}</h2>
-    </section>
-  </div>
-  <div class="timer-container">
-    <count-down-timer></count-down-timer>
-    <h2 class="osaekomi-label">Osaekomi Time</h2>
-    <osaekomi-timer></osaekomi-timer>
+  <div class="wrapper" ng-style="panel.settings.zoomFactor">
+    <div class="info-box-wrapper">
+      <div class="info-box">
+        <p>
+          {{panel.players.info}}
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      <section class="left container-item">
+        <h2 class="player-name">{{panel.players.blue.name}}</h2>
+      </section>
+      <section class="right container-item">
+        <h2 class="player-name">{{panel.players.white.name}}</h2>
+      </section>
+    </div>
+    <div class="timer-wrapper">
+      <div class="timer-container">
+        <count-down-timer></count-down-timer>
+        <h2 class="osaekomi-label">Osaekomi Time</h2>
+        <osaekomi-timer></osaekomi-timer>
+      </div>
+    </div>
+    <div class="penalty-wrapper left">
+      <section class="penalty-container">
+        <ul class="score">
+          <li class="score-item">
+            <span class="score-label">Shido</span>
+            <div class="shido-bubble" ng-class="{'active': panel.players.blue.penalty.shido > 0}"></div>
+            <div class="shido-bubble" ng-class="{'active': panel.players.blue.penalty.shido > 1}"></div>
+            <div class="shido-bubble" ng-class="{'active': panel.players.blue.penalty.shido > 2}"></div>
+          </li>
+          <li class="score-item" ng-if="panel.settings.showMedication">
+            <span class="score-label">Med.</span>
+            <span class="score-value">{{panel.players.blue.penalty.medication}}</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="penalty-wrapper right">
+      <section class="penalty-container">
+        <ul class="score">
+          <li class="score-item">
+            <span class="score-label">Shido</span>
+            <div class="shido-bubble" ng-class="{'active': panel.players.white.penalty.shido > 0}"></div>
+            <div class="shido-bubble" ng-class="{'active': panel.players.white.penalty.shido > 1}"></div>
+            <div class="shido-bubble" ng-class="{'active': panel.players.white.penalty.shido > 2}"></div>
+          </li>
+          <li class="score-item" ng-if="panel.settings.showMedication">
+            <span class="score-label">Med.</span>
+            <span class="score-value">{{panel.players.white.penalty.medication}}</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="container container-bottom">
+      <section class="left container-item">
+        <ul class="score" ng-hide="panel.players.blue.score.ippon">
+          <li class="score-item">
+            <span class="score-label">Waza-Ari</span>
+            <span class="score-value">{{panel.players.blue.score.wazaAri}}</span>
+          </li>
+          <li class="score-item">
+            <span class="score-label">Yuko</span>
+            <span class="score-value">{{panel.players.blue.score.yuko}}</span>
+          </li>
+        </ul>
+        <div class="score-ippon" ng-show="panel.players.blue.score.ippon">
+          <span>IPPON</span>
+        </div>
+      </section>
+      <section class="right container-item">
+        <ul class="score" ng-hide="panel.players.white.score.ippon">
+          <li class="score-item">
+            <span class="score-label">Waza-Ari</span>
+            <span class="score-value">{{panel.players.white.score.wazaAri}}</span>
+          </li>
+          <li class="score-item">
+            <span class="score-label">Yuko</span>
+            <span class="score-value">{{panel.players.white.score.yuko}}</span>
+          </li>
+        </ul>
+        <div class="score-ippon" ng-show="panel.players.white.score.ippon">
+          <span>IPPON</span>
+        </div>
+      </section>
+    </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ angular.module('shared')
     zoomFactor: 1,
     timerIsRunning: false,
     osaekomiTimerIsRunning: false,
+    showMedication: false,
     duration: 180000,
     list: [
       {

@@ -20,3 +20,16 @@ body {
 .timer.finished {
   color: red;
 }
+
+md-card .md-headline {
+  margin: 0 0 10px 0;
+}
+
+
+md-select {
+  padding-top: 5px;
+}
+
+.settings-modal h4 {
+  margin: 0;
+}

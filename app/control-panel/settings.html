@@ -1,12 +1,16 @@
-<md-dialog aria-label="Settings">
+<md-dialog aria-label="Settings" class="settings-modal">
   <md-dialog-content>
+    <h4>Competition Time</h4>
     <md-select placeholder="Pick the time" ng-model="settings.duration">
       <md-option ng-repeat="item in settings.list" value="{{item.value}}">{{item.label}}</md-option>
     </md-select>
+    <h4>Zoom Factor</h4>
     <md-input-container flex>
-      <label></label>
       <input type="number" ng-model="settings.zoomFactor" step="0.1">
     </md-input-container>
+    <h4>Show Medication</h4>
+    <md-switch ng-model="settings.showMedication" aria-label="show medication">
+    </md-switch>
   </md-dialog-content>
   <div class="md-actions" layout="row">
     <md-button ng-click="cancel()" class="md-warn">

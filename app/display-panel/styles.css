@@ -15,10 +15,56 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
+  overflow: hidden;
+}
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.info-box-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: both;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.info-box {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: white;
+  height: auto;
+  min-height: 40px;
+  width: 30%;
+  line-height: 40px;
+  padding: 5px 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.info-box p {
+  margin: -40px 0 0 0;
+  white-space: pre-line;
+  overflow: hidden;
 }
 
 .container {
   width: 100%;
+}
+
+.container.container-bottom {
+  position: absolute;
+  bottom: 0;
 }
 
 .container-item {
@@ -32,23 +78,42 @@ section.left {
   color: white;
 }
 
-section.right {
-}
-
 .player-name {
   font-weight: 300;
-  text-align: center;
+  text-align: left;
+  font-size: 50px;
+  padding: 0 0 0 50px;
+  max-width: 55%;
+}
+
+section.right .player-name {
+  text-align: right;
+  margin-left: 50%;
+  padding: 0 50px 0 0;
+}
+
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: both;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .timer-container {
-  position: absolute;
-  top: 30%;
-  left: 25%;
-  display: inline-block;
-  width: 50%;
   background-color: white;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   border-radius: 3px;
+  width: 30%;
+  padding: 20px;
+  resize: both;
+  overflow: auto;
 }
 
 .timer {
@@ -59,8 +124,8 @@ section.right {
 .timer h1 {
   /*font-family: 'digital-7';*/
   display: inline-block;
-  font-size: 120px;
-  font-weight: 100;
+  font-size: 100px;
+  font-weight: 200;
   margin: 0;
 }
 
@@ -83,4 +148,88 @@ section.right {
 
 .timer.finished {
   color: red;
+}
+
+ul.score {
+  list-style: none;
+  font-size: 70px;
+  font-weight: 200;
+  margin: 0 0 20px 0;
+  padding: 0;
+  text-align: center;
+}
+
+ul.score .score-item {
+  display: inline-block;
+  text-align: center;
+}
+
+ul.score .score-item:first-child {
+  margin-right: 100px;
+}
+
+ul.score .score-item .score-label {
+  display: block;
+}
+
+.score-ippon {
+  text-align: center;
+  font-size: 100px;
+  margin-top: 35px;
+}
+
+.penalty-wrapper {
+  display: flex;
+  align-items: center;
+  resize: both;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.penalty-wrapper.left {
+  left: 0;
+  justify-content: left;
+  color: white;
+}
+
+.penalty-wrapper.right {
+  right: 0;
+  justify-content: right;
+  flex-direction: row-reverse;
+}
+
+.penalty-container {
+  width: 30%;
+  padding: 20px;
+  resize: both;
+  overflow: auto;
+}
+
+.penalty-container.right {
+  right: 0;
+}
+
+.penalty-container ul.score {
+  font-size: 50px;
+}
+
+.penalty-container ul.score .score-item {
+  display: block;
+  margin: 0;
+}
+
+.penalty-container .shido-bubble {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: grey;
+  display: inline-block;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.penalty-container .shido-bubble.active {
+  background-color: red;
 }

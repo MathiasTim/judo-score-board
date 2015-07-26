@@ -1,8 +1,5 @@
 'use strict';
 
-// const BrowserWindow = require('browser-window');
-// const console = require('console');
-
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
