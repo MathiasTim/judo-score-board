@@ -2,6 +2,7 @@
 angular.module('shared')
 .service('Settings', function () {
   this.settings = {
+    zoomFactor: 1,
     timerIsRunning: false,
     osaekomiTimerIsRunning: false,
     duration: 180000,

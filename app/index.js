@@ -19,15 +19,15 @@ function onClosed () {
   // deref the window
   // for multiple windows store them in an array
   controlPanel = null;
+  displayPanel = null;
 }
 
-function createMainWindow (path, width, height, offsetX) {
+function createMainWindow (path, width, height, zoomFactor) {
   const win = new BrowserWindow({
-    x: offsetX || 0,
     width: width || 600,
     height: height || 400,
     resizable: true,
-    // 'zoom-factor': 2.0
+    'zoom-factor': zoomFactor || 1
   });
 
   win.loadUrl(`file://${__dirname}/${path}`);
@@ -49,8 +49,8 @@ app.on('activate-with-no-open-windows', function () {
 });
 
 app.on('ready', function () {
-  displayPanel = createMainWindow('display-panel/index.html', 600, 400, 5000);
-  controlPanel = createMainWindow('control-panel/index.html', 600, 400, 0);
+  displayPanel = createMainWindow('display-panel/index.html', 1000, 600);
+  controlPanel = createMainWindow('control-panel/index.html', 600, 800);
 
   Communicator.startListener(controlPanel, displayPanel);
 });

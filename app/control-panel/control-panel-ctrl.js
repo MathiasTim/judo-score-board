@@ -75,6 +75,7 @@ angular.module('controlPanel')
     })
     .then(function (settings) {
       ipc.send('timer', {clear: true, defaultDuration: settings.duration});
+      ipc.send('settings', {zoomFactor: settings.zoomFactor});
     }, function () {
       console.log('else');
     });

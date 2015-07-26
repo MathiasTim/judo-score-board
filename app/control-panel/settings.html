@@ -3,6 +3,10 @@
     <md-select placeholder="Pick the time" ng-model="settings.duration">
       <md-option ng-repeat="item in settings.list" value="{{item.value}}">{{item.label}}</md-option>
     </md-select>
+    <md-input-container flex>
+      <label></label>
+      <input type="number" ng-model="settings.zoomFactor" step="0.1">
+    </md-input-container>
   </md-dialog-content>
   <div class="md-actions" layout="row">
     <md-button ng-click="cancel()" class="md-warn">

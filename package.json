@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "My stellar app",
   "license": "MIT",
-  "main": "index.js",
+  "main": "app/index.js",
   "repository": "MathiasTim/judo-score-board",
   "author": {
     "name": "Mathias Maier",
@@ -15,13 +15,11 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --prune --asar --all --version=0.29.1"
+    "start": "electron ./app",
+    "build": "electron-packager . $npm_package_productName --prune --asar --all --version=0.29.1 --out=build --overwrite"
   },
   "files": [
-    "index.js",
-    "index.html",
-    "index.css"
+    "app/*"
   ],
   "keywords": [
     "electron-app"
